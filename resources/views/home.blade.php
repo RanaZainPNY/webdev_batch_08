@@ -8,10 +8,16 @@
 </head>
 
 <body>
+
+    <div>
+        <span>User Name: {{ $user_data->name }}</span>
+        <br>
+        <span>User Email: {{ $user_data->email }}</span>
+    </div>
     <h1>This is my Home Page</h1>
     <h2><?php echo 'Hello Echo'; ?></h2>
 
-    <a href="{{route('products')}}">Go to Products Page</a>
+    <a href="{{ route('products') }}">Go to Products Page</a>
     @php
         $age = 33;
         $name = 'M. Umer';

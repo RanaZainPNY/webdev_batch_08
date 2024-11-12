@@ -1,14 +1,17 @@
 <?php
 
+use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use App\Models\Product;
+use App\Http\Controllers\ProductController;
 
-Route::get('/', function () {
-    // return view('welcome');
-    // return "Muhmmad Omar";
-    // $age = 33;
-    // return "<h1> Ghulam Rasool's Age: $age</h1>";
-    return view('home');
-})->name('index');
+Route::get('/', [ProductController::class, 'getProductData'])->name('index');
+
+// Web Routes
+Route::get('/web/', [WebsiteController::class, 'index'])->name('web-index');
+Route::get('/web/master', [WebsiteController::class, 'master'])->name('web-master');
+Route::get('/web/shop', [WebsiteController::class, 'shop'])->name('web-shop');
 
 
 Route::get('/home/products', function () {
@@ -18,9 +21,12 @@ Route::get('/home/products', function () {
         ['name' => "table", 'price' => 3333, 'brand' => 'lego'],
         ['name' => "almirah", 'price' => 5432, 'brand' => 'johson'],
     ];
-
+    $age = 33;
     return view('products', [
         'product_data' => $prod_data,
+        'username' => 'omar',
+        'age' => $age,
     ]);
 
 })->name('products');
+
