@@ -1039,6 +1039,7 @@
                                                     <th scope="col" class="">Name</th>
                                                     <th scope="col" class="">SKU</th>
                                                     <th scope="col" class="">Price</th>
+                                                    <th scope="col" class="">Image</th>
                                                     <th scope="col" class="">Action</th>
                                                 </tr>
                                             </thead>
@@ -1051,7 +1052,13 @@
                                                         <td>{{ $product->sku }}</td>
                                                         <td>{{ $product->price }}</td>
                                                         <td>
-                                                            <a href=""
+                                                            <img style='width: 50px;'
+                                                                src="{{ asset('uploads/products/' . $product->image) }}"
+                                                                alt="">
+                                                            {{-- {{ $product->image }} --}}
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ route('admin-editForm-product', $product->id) }}"
                                                                 class="btn btn-sm btn-success btn-round edit-btn">Edit</a>
                                                             <a href="{{ route('admin-delete-product', $product->id) }}"
                                                                 class="btn btn-sm btn-danger btn-round delete-btn">Delete</a>
