@@ -12,6 +12,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/one", function (Request $request) {
     // echo "hello api";
-
     return response()->json(Product::all());
 });
