@@ -45,3 +45,6 @@ Route::get('/home/products', function () {
 Route::get('/web/add-to-cart/{id}', [WebsiteController::class, 'addToCart'])->name('web-add-to-cart');
 Route::get('/web/cart', [WebsiteController::class, 'cart'])->name('web-cart');
 Route::get('/web/remove-from-cart/{id}', [WebsiteController::class, 'remove'])->name('web-remove-from-cart');
+
+// place order
+Route::post('/placeorder', [WebsiteController::class, 'placeorder'])->name('web-place-order');

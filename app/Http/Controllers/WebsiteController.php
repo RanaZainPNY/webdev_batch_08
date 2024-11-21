@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Order;
 
 class WebsiteController extends Controller
 {
@@ -59,8 +60,8 @@ class WebsiteController extends Controller
 
     public function cart()
     {
-        $cart = session()->get('cart');
-        dump($cart);
+        // $cart = session()->get('cart');
+        // dump($cart);
         return view('web.cart');
     }
 
@@ -78,6 +79,32 @@ class WebsiteController extends Controller
     function checkout()
     {
         return view('web.checkout');
+    }
+
+    function placeorder(Request $request)
+    {
+        // dump($request);
+        $cart = session()->get('cart');
+        $total = 0;
+        foreach ($cart as $id => $details) {
+            # code...
+            $total += $details['price'] * $details['quantity'];
+        }
+
+
+        $order = new Order();
+        $order->firstname = $request->firstname;
+        $order->lastname = $request->lastname;
+        $order->email = $request->email;
+        $order->address = $request->address;
+        $order->notes = $request->notes;
+        $order->contact = $request->contact;
+        $order->total = $total;
+        $order->save();
+        // echo "order created successfully";
+
+        session()->forget('cart');
+        return redirect()->route('web-index')->with('success', 'Order placed successfully');
     }
 
 }

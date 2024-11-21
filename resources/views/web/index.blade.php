@@ -1,8 +1,18 @@
 @extends('web.webmaster')
 
 @section('content')
+
+
        <!-- Hero Start -->
        <div class="container-fluid py-5 mb-5 hero-header">
+
+        @if (Session::has('success'))
+        <h1> Order placed successfully </h1>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Thanks for shopping...</strong> Your Order placed successfully
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         <div class="container py-5">
             <div class="row g-5 align-items-center">
                 <div class="col-md-12 col-lg-7">
